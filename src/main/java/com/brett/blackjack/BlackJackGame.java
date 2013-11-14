@@ -4,11 +4,12 @@ import java.nio.channels.FileLock;
 
 public class BlackJackGame {
 
+    private Shoe shoe;
     private Hand dealersHand;
     private Hand playersHand;
 
     public BlackJackGame(){
-        Shoe shoe = new Shoe(6);
+        this.shoe = new Shoe(6);
 
         dealersHand = new Hand();
         dealersHand.addCard(shoe.draw());
@@ -27,4 +28,10 @@ public class BlackJackGame {
     public Hand getPlayersHand() {
         return playersHand;
     }
+
+    public void hit(){
+        playersHand.addCard(shoe.draw());
+    }
+
+
 }

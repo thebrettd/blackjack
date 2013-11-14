@@ -13,4 +13,12 @@ public class BlackJackGameTests {
         assertTrue(game.getPlayersHand().size() == 2);
 
     }
+
+    @Test
+    public void testHit(){
+        BlackJackGame game = new BlackJackGame();
+        game.hit();
+        assertTrue(game.getPlayersHand().size() == 3);
+    }
+
 }
