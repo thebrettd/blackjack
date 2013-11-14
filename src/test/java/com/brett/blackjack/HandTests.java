@@ -11,12 +11,20 @@ public class HandTests {
     @Test
     public void testAddCard(){
         Hand testHand = new Hand();
-        testHand.addCard(new Card(Suit.CLUB, Value.ACE));
+        testHand.addCard(new Card(Suit.CLUB, Value.TEN));
+        assertTrue(testHand.totals().size() == 1);
+        assertTrue(testHand.totals().get(0) == 10);
 
         List<Card> cards = testHand.getCards();
         assertTrue(cards.size() == 1);
         assertTrue(cards.get(0).getSuit().equals(Suit.CLUB));
-        assertTrue(cards.get(0).getValue().equals(Value.ACE));
+        assertTrue(cards.get(0).getIntValue().equals(Value.TEN));
+
+        testHand.addCard(new Card(Suit.SPADE, Value.ACE));
+        assertTrue(testHand.totals().size() == 2);
+        assertTrue(testHand.totals().contains(11));
+        assertTrue(testHand.totals().contains(21));
+
     }
 
 

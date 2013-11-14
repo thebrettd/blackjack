@@ -10,7 +10,7 @@ public class Card {
         this.suit = suit;
     }
 
-    public Value getValue() {
+    public Value getIntValue() {
         return value;
     }
 
