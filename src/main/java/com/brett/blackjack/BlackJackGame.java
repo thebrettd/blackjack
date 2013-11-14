@@ -32,5 +32,26 @@ public class BlackJackGame {
         playersHand.addCard(shoe.draw());
     }
 
+    private void dealerHit(){
+        dealersHand.addCard(shoe.draw());
+    }
+
+    public void resolveDealerHand(){
+        while(dealerBelowSeventeen()){
+            dealerHit();
+        }
+    }
+
+    //Dealer should hit soft seventeen because one total is less than 17..
+    private boolean dealerBelowSeventeen() {
+        boolean belowFound = false;
+        for(Integer totals : dealersHand.totals()){
+            if (totals < 17){
+                return true;
+            }
+        }
+        return belowFound;
+    }
+
 
 }
