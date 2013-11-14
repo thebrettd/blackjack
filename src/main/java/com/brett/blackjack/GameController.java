@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class GameController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
-		model.addAttribute("message", "Welcome to Blackjack!");
+		model.addAttribute("message", "Welcome to Blackjack! Click to start a new game");
 		return "mainMenu";
 	}
 
