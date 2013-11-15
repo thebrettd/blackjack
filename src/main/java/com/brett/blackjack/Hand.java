@@ -58,4 +58,26 @@ public class Hand {
     public List<Integer> getTotals(){
         return totals;
     }
+
+    public String busted(){
+        return finalTotal() > 21 ? "Busted!" : "";
+    }
+
+
+    //Largest total less than 21 or smallest total if over 21..
+    public Integer finalTotal(){
+        int currFinalTotal = totals.get(0);
+
+        for(Integer total : totals){
+            if ( (total > currFinalTotal && total <= 21) || ((total < currFinalTotal) && bothGreaterThanTwentyOne(total,currFinalTotal))){
+                currFinalTotal = total;
+            }
+        }
+        return currFinalTotal;
+    }
+
+    private boolean bothGreaterThanTwentyOne(Integer total, int finalTotal) {
+        return (total > 21 && finalTotal > 21);
+    }
+
 }

@@ -69,4 +69,17 @@ public class BlackJackGame {
         }
         return belowFound;
     }
+
+    public String result(){
+        if (playerBusted()){
+            return "You lose! :(";
+        }else if (playersHand.finalTotal().equals(dealersHand.finalTotal())){
+            return "Push";
+        }else if ((playersHand.finalTotal() < dealersHand.finalTotal()) && dealersHand.finalTotal() < 22){
+            return "You lose! :(";
+        }else{
+            return "Win!";
+        }
+    }
+
 }

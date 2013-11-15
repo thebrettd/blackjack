@@ -7,30 +7,36 @@
 
 <div>
     <h1>Dealers Hand</h1>
-
     ${game.dealersHand.toString()}
 
     <h2>Totals</h2>
+    ${game.dealersHand.finalTotal()}
 
-    ${game.dealersHand.totals}
+    ${game.dealersHand.busted()}
 
 </div>
 
 <div>
     <h1>Players Hand</h1>
-
     ${game.playersHand.toString()}
 
     <h2>Totals</h2>
+    ${game.playersHand.finalTotal()}
 
-    ${game.playersHand.totals}
+    ${game.playersHand.busted()}
 
 </div>
 
+<div>
+    <h1>Result</h1>
+    ${game.result()}
+</div>
 
-<form method="POST">
-<input value="Deal" name="deal" type="submit" id="dealButton" class="submit_button">
-</form>
+<div>
+    <form method="POST">
+        <input value="Deal" name="deal" type="submit" id="dealButton" class="submit_button">
+    </form>
+</div>
 
 </body>
 </html>
