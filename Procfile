@@ -1,1 +1,1 @@
-web: java -jar target/dependency/webapp-runner-7.0.22.jar target/blackjack.war
+web:    java $JAVA_OPTS -jar target/dependency/webapp-runner.jar --port $PORT target/*.war
