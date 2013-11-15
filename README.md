@@ -10,3 +10,7 @@ Running the game
 2. mvn package
 3. java -jar target/dependency/webapp-runner-7.0.40.0.jar target/*.war
 
+Play
+=========
+
+The game is also deployed [on Heroku](http://brettsblackjack.herokuapp.com)
