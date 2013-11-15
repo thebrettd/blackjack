@@ -70,7 +70,7 @@ public class BlackJackGame {
 
     private boolean dealerBelowSeventeen() {
         for (Integer totals : getDealersHand().getTotals()) {
-            if (totals >= 17){ //Do not hit if dealers has 17 or greater
+            if (totals >= 17 && totals < 21){ //Do not hit if dealers has 17 or greater
                 return false;
             }
         }

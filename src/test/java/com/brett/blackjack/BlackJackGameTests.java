@@ -126,5 +126,19 @@ public class BlackJackGameTests {
         assertTrue(dealersHand.size() == 2);
     }
 
+    @Test
+    public void dealerHitSixteen(){
+        BlackJackGame game = new BlackJackGame();
+
+        Hand dealersHand = new Hand();
+        dealersHand.addCard(new Card(Suit.SPADE, Value.FOUR));
+        dealersHand.addCard(new Card(Suit.SPADE, Value.TWO));
+        dealersHand.addCard(new Card(Suit.SPADE, Value.NINE));
+        dealersHand.addCard(new Card(Suit.SPADE, Value.ACE));
+        game.setDealersHand(dealersHand);
+
+        game.resolveDealerHand();
+        assertTrue(dealersHand.size() == 5);
+    }
 
 }
