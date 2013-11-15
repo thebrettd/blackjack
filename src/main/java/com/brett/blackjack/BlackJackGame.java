@@ -78,7 +78,7 @@ public class BlackJackGame {
         }
     }
 
-    //If any total is >= 17 but not a bust
+    //If any total is >= 17 but not a bust do no hit
     private boolean dealerBelowSeventeen() {
         for (Integer totals : getDealersHand().getTotals()) {
             if (totals >= 17 && totals < 22){ //Do not hit if dealers has 17 or greater
