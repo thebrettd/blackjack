@@ -31,7 +31,7 @@ public class BlackJackGameTests {
         resolver.resolveDealerHand();
 
         boolean totalBelowSeventeenFound = false;
-        for(Integer total : game.getDealersHand().totals()){
+        for(Integer total : game.getDealersHand().getTotals()){
             if (total < 17){
                 totalBelowSeventeenFound = true;
             }

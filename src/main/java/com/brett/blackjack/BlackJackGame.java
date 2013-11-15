@@ -2,7 +2,6 @@ package com.brett.blackjack;
 
 
 import com.brett.blackjack.DealerStrategies.DealerHandResolver;
-import com.brett.blackjack.DealerStrategies.DealerHitSoftSeventeen;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class BlackJackGame {
@@ -43,8 +42,31 @@ public class BlackJackGame {
         dealersHand.addCard(shoe.draw());
     }
 
-    public void resolveDealerHand(){
-        dealerHandResolver.resolveDealerHand();
+
+    public boolean playerBusted() {
+        boolean allTotalsBusted = true;
+        for(Integer totals : playersHand.getTotals()){
+            if (totals <= 21){
+                allTotalsBusted = false;
+            }
+        }
+        return allTotalsBusted;
     }
 
+    public void resolveDealerHand() {
+        while (dealerBelowSeventeen()) {
+            dealerHit();
+        }
+    }
+
+    //Dealer should hit soft seventeen because one total is < 17
+    boolean dealerBelowSeventeen() {
+        boolean belowFound = false;
+        for (Integer totals : getDealersHand().getTotals()) {
+            if (totals < 17) {
+                return true;
+            }
+        }
+        return belowFound;
+    }
 }

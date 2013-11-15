@@ -12,8 +12,8 @@ public class HandTests {
     public void testAddCard(){
         Hand testHand = new Hand();
         testHand.addCard(new Card(Suit.CLUB, Value.TEN));
-        assertTrue(testHand.totals().size() == 1);
-        assertTrue(testHand.totals().get(0) == 10);
+        assertTrue(testHand.getTotals().size() == 1);
+        assertTrue(testHand.getTotals().get(0) == 10);
 
         List<Card> cards = testHand.getCards();
         assertTrue(cards.size() == 1);
@@ -21,9 +21,9 @@ public class HandTests {
         assertTrue(cards.get(0).getIntValue().equals(Value.TEN));
 
         testHand.addCard(new Card(Suit.SPADE, Value.ACE));
-        assertTrue(testHand.totals().size() == 2);
-        assertTrue(testHand.totals().contains(11));
-        assertTrue(testHand.totals().contains(21));
+        assertTrue(testHand.getTotals().size() == 2);
+        assertTrue(testHand.getTotals().contains(11));
+        assertTrue(testHand.getTotals().contains(21));
 
     }
 

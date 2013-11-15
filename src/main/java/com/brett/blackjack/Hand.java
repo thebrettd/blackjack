@@ -5,34 +5,34 @@ import java.util.List;
 
 public class Hand {
 
-    private List<Card> myCards;
-    private List<Integer> myTotals;
+    private List<Card> cards;
+    private List<Integer> totals;
 
     public Hand(){
-        myTotals = new ArrayList<Integer>();
-        myTotals.add(0);
+        totals = new ArrayList<Integer>();
+        totals.add(0);
 
-        myCards = new ArrayList<Card>();
+        cards = new ArrayList<Card>();
     }
 
     public void addCard(Card card){
-        myCards.add(card);
+        cards.add(card);
 
         if(card.getIntValue().equals(Value.ACE)){
             //increment each total by value
             List<Integer> newTotals = new ArrayList<Integer>();
-            for(Integer oldTotal : myTotals){
+            for(Integer oldTotal : totals){
                 newTotals.add(oldTotal + 1);
                 newTotals.add(oldTotal + 11);
             }
-            myTotals = newTotals;
+            totals = newTotals;
         }else{
             //increment each total by value
             List<Integer> newTotals = new ArrayList<Integer>();
-            for(Integer oldTotal : myTotals){
+            for(Integer oldTotal : totals){
                 newTotals.add(oldTotal + card.getIntValue().value());
             }
-            myTotals = newTotals;
+            totals = newTotals;
         }
 
 
@@ -40,14 +40,22 @@ public class Hand {
     }
 
     public List<Card> getCards() {
-        return myCards;
+        return cards;
+    }
+
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        for (Card card : cards){
+            sb.append(card.toString());
+        }
+        return sb.toString();
     }
 
     public int size() {
-        return myCards.size();
+        return cards.size();
     }
 
-    public List<Integer> totals(){
-        return myTotals;
+    public List<Integer> getTotals(){
+        return totals;
     }
 }
