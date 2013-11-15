@@ -75,7 +75,7 @@ public class BlackJackGame {
             return "You lose! :(";
         }else if (playersHand.finalTotal().equals(dealersHand.finalTotal())){
             return "Push";
-        }else if ((playersHand.finalTotal() < dealersHand.finalTotal()) && dealersHand.finalTotal() < 22){
+        }else if ((Integer.parseInt(playersHand.finalTotal()) < Integer.parseInt(dealersHand.finalTotal()) && Integer.parseInt(dealersHand.finalTotal()) < 22)){
             return "You lose! :(";
         }else{
             return "Win!";
