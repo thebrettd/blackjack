@@ -60,20 +60,24 @@ public class Hand {
     }
 
     public String busted(){
-        return finalTotal() > 21 ? "Busted!" : "";
+        return Integer.parseInt(finalTotal()) > 21 ? "Busted!" : "";
     }
 
 
     //Largest total less than 21 or smallest total if over 21..
-    public Integer finalTotal(){
-        int currFinalTotal = totals.get(0);
-
-        for(Integer total : totals){
-            if ( (total > currFinalTotal && total <= 21) || ((total < currFinalTotal) && bothGreaterThanTwentyOne(total,currFinalTotal))){
-                currFinalTotal = total;
-            }
+    public String finalTotal(){
+        Integer currFinalTotal = totals.get(0);
+        if(currFinalTotal.equals(21) && cards.size() == 2){
+            return "Blackjack!";
         }
-        return currFinalTotal;
+        else{
+            for(Integer total : totals){
+                if ( (total > currFinalTotal && total <= 21) || ((total < currFinalTotal) && bothGreaterThanTwentyOne(total,currFinalTotal))){
+                    currFinalTotal = total;
+                }
+            }
+            return currFinalTotal.toString();
+        }
     }
 
     private boolean bothGreaterThanTwentyOne(Integer total, int finalTotal) {
