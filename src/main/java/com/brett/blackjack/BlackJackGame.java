@@ -68,15 +68,13 @@ public class BlackJackGame {
         }
     }
 
-    //Dealer should hit soft seventeen because one total is < 17
-    boolean dealerBelowSeventeen() {
-        boolean belowFound = false;
+    private boolean dealerBelowSeventeen() {
         for (Integer totals : getDealersHand().getTotals()) {
-            if (totals < 17) {
-                return true;
+            if (totals >= 17){ //Do not hit if dealers has 17 or greater
+                return false;
             }
         }
-        return belowFound;
+        return true;
     }
 
     public String result(){

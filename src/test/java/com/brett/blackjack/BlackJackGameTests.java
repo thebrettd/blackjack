@@ -10,21 +10,21 @@ import static org.junit.Assert.assertTrue;
 public class BlackJackGameTests {
 
     @Test
-    public void testConstructor(){
+    public void testConstructor() {
         BlackJackGame game = new BlackJackGame();
         assertTrue(game.getDealersHand().size() == 1);
         assertTrue(game.getPlayersHand().size() == 2);
     }
 
     @Test
-    public void testHit(){
+    public void testHit() {
         BlackJackGame game = new BlackJackGame();
         game.playerHit();
         assertTrue(game.getPlayersHand().size() == 3);
     }
 
     @Test
-    public void testDealerHitSoftSeventeen(){
+    public void testDealerHitSoftSeventeen() {
         BlackJackGame game = new BlackJackGame();
         Hand dealersHand = new Hand();
         dealersHand.addCard(new Card(Suit.CLUB, Value.ACE));
@@ -37,8 +37,8 @@ public class BlackJackGameTests {
         assertTrue(dealersHand.size() > 2);
 
         boolean totalBelowSeventeenFound = false;
-        for(Integer total : game.getDealersHand().getTotals()){
-            if (total < 17){
+        for (Integer total : game.getDealersHand().getTotals()) {
+            if (total < 17) {
                 totalBelowSeventeenFound = true;
             }
         }
@@ -46,7 +46,7 @@ public class BlackJackGameTests {
     }
 
     @Test
-    public void testDealerBlackjackWins(){
+    public void testDealerBlackjackWins() {
         BlackJackGame game = new BlackJackGame();
 
         Hand dealersHand = new Hand();
@@ -63,7 +63,7 @@ public class BlackJackGameTests {
     }
 
     @Test
-    public void testPlayerBlackjackBeatsTwentyOne(){
+    public void testPlayerBlackjackBeatsTwentyOne() {
         BlackJackGame game = new BlackJackGame();
 
         Hand dealersHand = new Hand();
@@ -81,7 +81,7 @@ public class BlackJackGameTests {
     }
 
     @Test
-    public void testTwentyOnesPush(){
+    public void testTwentyOnesPush() {
         BlackJackGame game = new BlackJackGame();
 
         Hand dealersHand = new Hand();
@@ -99,6 +99,32 @@ public class BlackJackGameTests {
         assertTrue(game.result().equals("Push"));
     }
 
+    @Test
+    public void dealerStandsHardSeventeen() {
+        BlackJackGame game = new BlackJackGame();
+
+        Hand dealersHand = new Hand();
+        dealersHand.addCard(new Card(Suit.SPADE, Value.SEVEN));
+        dealersHand.addCard(new Card(Suit.SPADE, Value.FIVE));
+        dealersHand.addCard(new Card(Suit.CLUB, Value.FIVE));
+        game.setDealersHand(dealersHand);
+
+        game.resolveDealerHand();
+        assertTrue(dealersHand.size() == 3);
+    }
+
+    @Test
+    public void dealerStandsSoftSeventeen(){
+        BlackJackGame game = new BlackJackGame();
+
+        Hand dealersHand = new Hand();
+        dealersHand.addCard(new Card(Suit.SPADE, Value.SIX));
+        dealersHand.addCard(new Card(Suit.SPADE, Value.ACE));
+        game.setDealersHand(dealersHand);
+
+        game.resolveDealerHand();
+        assertTrue(dealersHand.size() == 2);
+    }
 
 
 }
