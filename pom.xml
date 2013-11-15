@@ -57,6 +57,12 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.github.jsimone</groupId>
+            <artifactId>webapp-runner</artifactId>
+            <version>7.0.40.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
