@@ -62,8 +62,18 @@ public class BlackJackGame {
         return allTotalsBusted;
     }
 
+    public boolean dealerBusted() {
+        boolean allTotalsBusted = true;
+        for(Integer totals : playersHand.getTotals()){
+            if (totals <= 21){
+                allTotalsBusted = false;
+            }
+        }
+        return allTotalsBusted;
+    }
+
     public void resolveDealerHand() {
-        while (dealerBelowSeventeen()) {
+        while (dealerBelowSeventeen() && !dealerBusted()) {
             dealerHit();
         }
     }
