@@ -12,7 +12,7 @@
     <h2>Totals</h2>
     ${game.dealersHand.finalTotal()}
 
-    ${game.dealersHand.busted()}
+    ${game.dealersHand.result()}
 
 </div>
 
@@ -23,7 +23,7 @@
     <h2>Totals</h2>
     ${game.playersHand.finalTotal()}
 
-    ${game.playersHand.busted()}
+    ${game.playersHand.result()}
 
 </div>
 

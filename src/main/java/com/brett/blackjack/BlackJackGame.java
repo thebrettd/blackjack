@@ -10,6 +10,7 @@ public class BlackJackGame {
     private Hand dealersHand;
     private Hand playersHand;
 
+    //todo: fix this so dealer's strategy can be injected
     @Autowired
     private DealerHandResolver dealerHandResolver;
 
@@ -71,15 +72,14 @@ public class BlackJackGame {
     }
 
     public String result(){
-        if (playerBusted()){
+        if (playerBusted() || dealersHand.blackJack()){
             return "You lose! :(";
         }else if (playersHand.finalTotal().equals(dealersHand.finalTotal())){
             return "Push";
-        }else if ((Integer.parseInt(playersHand.finalTotal()) < Integer.parseInt(dealersHand.finalTotal()) && Integer.parseInt(dealersHand.finalTotal()) < 22)){
+        }else if ( (playersHand.finalTotal() < dealersHand.finalTotal()) && (dealersHand.finalTotal() < 22)){
             return "You lose! :(";
         }else{
             return "Win!";
         }
     }
-
 }
