@@ -12,4 +12,9 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <!-- Dependency Inject dealer's strategy -->
+    <bean name="dealerHandResolver" class="com.brett.blackjack.DealerStrategies.DealerHitSoftSeventeen"/>
+    <!--bean name="dealerHandResolver" class="com.brett.blackjack.DealerStrategies.DealerStandSoftSeventeen"/-->
+
+
 </beans>

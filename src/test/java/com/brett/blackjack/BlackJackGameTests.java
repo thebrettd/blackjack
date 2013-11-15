@@ -1,5 +1,6 @@
 package com.brett.blackjack;
 
+import com.brett.blackjack.DealerStrategies.DealerHitSoftSeventeen;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
@@ -12,21 +13,22 @@ public class BlackJackGameTests {
         BlackJackGame game = new BlackJackGame();
         assertTrue(game.getDealersHand().size() == 1);
         assertTrue(game.getPlayersHand().size() == 2);
-
     }
 
     @Test
     public void testHit(){
         BlackJackGame game = new BlackJackGame();
-        game.hit();
+        game.playerHit();
         assertTrue(game.getPlayersHand().size() == 3);
     }
 
     @Test
     //After resolving the hand, dealer cannot have a total less than 17
-    public void testResolveDealerHand(){
+    //todo: figure out how to force dealers hand to soft 17..
+    public void testDealerHitSoftSeventeen(){
         BlackJackGame game = new BlackJackGame();
-        game.resolveDealerHand();
+        DealerHitSoftSeventeen resolver = new DealerHitSoftSeventeen(game);
+        resolver.resolveDealerHand();
 
         boolean totalBelowSeventeenFound = false;
         for(Integer total : game.getDealersHand().totals()){
@@ -35,14 +37,6 @@ public class BlackJackGameTests {
             }
         }
         assertFalse(totalBelowSeventeenFound);
-
-    }
-
-    @Test
-    //After resolving the hand, dealer cannot have a total less than 17
-    public void testDealerHitSoftSeventeen(){
-        BlackJackGame game = new BlackJackGame();
-        game.resolveDealerHand();
     }
 
 
