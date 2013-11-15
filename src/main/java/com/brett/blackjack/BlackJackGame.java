@@ -62,25 +62,26 @@ public class BlackJackGame {
         return allTotalsBusted;
     }
 
+    //Return false if any total is less than 21
     public boolean dealerBusted() {
-        boolean allTotalsBusted = true;
-        for(Integer totals : playersHand.getTotals()){
+        for(Integer totals : dealersHand.getTotals()){
             if (totals <= 21){
-                allTotalsBusted = false;
+                return false;
             }
         }
-        return allTotalsBusted;
+        return true;
     }
 
     public void resolveDealerHand() {
-        while (dealerBelowSeventeen() && !dealerBusted()) {
+        while (!dealerBusted() && dealerBelowSeventeen()) {
             dealerHit();
         }
     }
 
+    //If any total is >= 17 but not a bust
     private boolean dealerBelowSeventeen() {
         for (Integer totals : getDealersHand().getTotals()) {
-            if (totals >= 17 && totals < 21){ //Do not hit if dealers has 17 or greater
+            if (totals >= 17 && totals < 22){ //Do not hit if dealers has 17 or greater
                 return false;
             }
         }
