@@ -35,6 +35,14 @@ public class BlackJackGame {
         return playersHand;
     }
 
+    public void setPlayersHand(Hand hand) {
+        this.playersHand = hand;
+    }
+
+    public void setDealersHand(Hand hand) {
+        this.dealersHand = hand;
+    }
+
     public void playerHit(){
         playersHand.addCard(shoe.draw());
     }
@@ -74,12 +82,14 @@ public class BlackJackGame {
     public String result(){
         if (playerBusted() || dealersHand.blackJack()){
             return "You lose! :(";
+        }else if (playersHand.blackJack()){
+            return "You win!";
         }else if (playersHand.finalTotal().equals(dealersHand.finalTotal())){
             return "Push";
         }else if ( (playersHand.finalTotal() < dealersHand.finalTotal()) && (dealersHand.finalTotal() < 22)){
             return "You lose! :(";
         }else{
-            return "Win!";
+            return "You win!";
         }
     }
 }

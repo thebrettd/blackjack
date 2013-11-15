@@ -2,6 +2,7 @@ package com.brett.blackjack;
 
 import com.brett.blackjack.DealerStrategies.DealerHitSoftSeventeen;
 import org.junit.Test;
+import org.junit.experimental.theories.suppliers.TestedOn;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -23,12 +24,17 @@ public class BlackJackGameTests {
     }
 
     @Test
-    //After resolving the hand, dealer cannot have a total less than 17
-    //todo: figure out how to force dealers hand to soft 17..
     public void testDealerHitSoftSeventeen(){
         BlackJackGame game = new BlackJackGame();
+        Hand dealersHand = new Hand();
+        dealersHand.addCard(new Card(Suit.CLUB, Value.ACE));
+        dealersHand.addCard(new Card(Suit.CLUB, Value.SIX));
+        game.setDealersHand(dealersHand);
+
         DealerHitSoftSeventeen resolver = new DealerHitSoftSeventeen(game);
         resolver.resolveDealerHand();
+
+        assertTrue(dealersHand.size() > 2);
 
         boolean totalBelowSeventeenFound = false;
         for(Integer total : game.getDealersHand().getTotals()){
@@ -38,6 +44,61 @@ public class BlackJackGameTests {
         }
         assertFalse(totalBelowSeventeenFound);
     }
+
+    @Test
+    public void testDealerBlackjackWins(){
+        BlackJackGame game = new BlackJackGame();
+
+        Hand dealersHand = new Hand();
+        dealersHand.addCard(new Card(Suit.SPADE, Value.ACE));
+        dealersHand.addCard(new Card(Suit.SPADE, Value.QUEEN));
+        game.setDealersHand(dealersHand);
+
+        Hand playersHand = new Hand();
+        playersHand.addCard(new Card(Suit.SPADE, Value.ACE));
+        playersHand.addCard(new Card(Suit.SPADE, Value.QUEEN));
+        game.setPlayersHand(playersHand);
+
+        assertTrue(game.result().equals("You lose! :("));
+    }
+
+    @Test
+    public void testPlayerBlackjackBeatsTwentyOne(){
+        BlackJackGame game = new BlackJackGame();
+
+        Hand dealersHand = new Hand();
+        dealersHand.addCard(new Card(Suit.SPADE, Value.ACE));
+        dealersHand.addCard(new Card(Suit.SPADE, Value.FIVE));
+        dealersHand.addCard(new Card(Suit.CLUB, Value.FIVE));
+        game.setDealersHand(dealersHand);
+
+        Hand playersHand = new Hand();
+        playersHand.addCard(new Card(Suit.SPADE, Value.ACE));
+        playersHand.addCard(new Card(Suit.SPADE, Value.QUEEN));
+        game.setPlayersHand(playersHand);
+
+        assertTrue(game.result().equals("You win!"));
+    }
+
+    @Test
+    public void testTwentyOnesPush(){
+        BlackJackGame game = new BlackJackGame();
+
+        Hand dealersHand = new Hand();
+        dealersHand.addCard(new Card(Suit.SPADE, Value.ACE));
+        dealersHand.addCard(new Card(Suit.SPADE, Value.FIVE));
+        dealersHand.addCard(new Card(Suit.CLUB, Value.FIVE));
+        game.setDealersHand(dealersHand);
+
+        Hand playersHand = new Hand();
+        playersHand.addCard(new Card(Suit.SPADE, Value.ACE));
+        playersHand.addCard(new Card(Suit.SPADE, Value.FIVE));
+        playersHand.addCard(new Card(Suit.SPADE, Value.FIVE));
+        game.setPlayersHand(playersHand);
+
+        assertTrue(game.result().equals("Push"));
+    }
+
 
 
 }
